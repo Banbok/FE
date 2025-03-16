@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { SectionProps } from "../../interfaces/sectionprops";
 import IcLineArrow from "../../assets/icon/IcLinekArrow";
 
-export const Title: React.FC<SectionProps> = ({ isActive }) => {
+export const Title: React.FC<SectionProps> = ({ isActive, onClick, id }) => {
   const [showScrollIndicator, setShowScrollIndicator] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
 
@@ -22,9 +22,11 @@ export const Title: React.FC<SectionProps> = ({ isActive }) => {
 
   return (
     <div
-      className={`h-screen w-full flex flex-col justify-center items-center bg-gray-900 transition-opacity duration-500 ${
+      id={id}
+      className={`h-screen w-full flex flex-col justify-center items-center bg-gray-900 transition-opacity duration-500 cursor-pointer ${
         isActive ? "opacity-100" : "opacity-50"
       }`}
+      onClick={onClick}
     >
       <h2 className="text-3xl font-bold mb-4 text-white">반 복</h2>
       <p className="text-lg text-center text-white mb-8">
@@ -39,7 +41,9 @@ export const Title: React.FC<SectionProps> = ({ isActive }) => {
             fadeIn ? "opacity-100" : "opacity-0"
           }`}
         >
-          <p className="text-white text-sm mb-2">아래로 스크롤하세요</p>
+          <p className="text-white text-sm mb-2">
+            아래로 스크롤하거나 클릭하세요
+          </p>
           <IcLineArrow
             width="24"
             height="24"

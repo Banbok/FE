@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { SectionProps } from "../../interfaces/sectionprops";
 
-export const CodeUrlInput: React.FC<SectionProps> = ({ isActive }) => {
+export const CodeUrlInput: React.FC<SectionProps> = ({
+  isActive,
+  onClick,
+  id,
+}) => {
   const [codeurl, setCodeurl] = useState("");
 
   const handleSubmit = () => {
@@ -19,10 +23,12 @@ export const CodeUrlInput: React.FC<SectionProps> = ({ isActive }) => {
   };
 
   return (
-    <div
+    <section
+      id={id}
       className={`h-screen w-full flex justify-center items-center bg-gray-300 transition-opacity duration-500 ${
         isActive ? "opacity-100" : "opacity-50"
       }`}
+      onClick={onClick}
     >
       <input
         type="text"
@@ -38,6 +44,6 @@ export const CodeUrlInput: React.FC<SectionProps> = ({ isActive }) => {
       >
         전송
       </button>
-    </div>
+    </section>
   );
 };
