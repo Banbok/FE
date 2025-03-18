@@ -36,11 +36,11 @@ export const CodeUrlInput: React.FC<SectionProps> = ({
         value={codeurl}
         onChange={(e) => setCodeurl(e.target.value)}
         onKeyDown={handleKeyPress}
-        className="w-64 p-2 border-t border-l border-b border-gray-300 rounded-l-2xl focus:outline-none focus:ring-2 focus:ring-black"
+        className="w-64 p-2 border-t border-l border-b border-black rounded-l-2xl focus:outline-none"
       />
       <button
         onClick={handleSubmit}
-        className="px-2 py-2.5 border border-blue-500 rounded-r-2xl bg-blue-500 text-white hover:bg-blue-600 transition-all"
+        className="px-2 py-2 border border-blue-500 rounded-r-2xl bg-blue-500 text-white hover:bg-blue-600 transition-all"
       >
         전송
       </button>
