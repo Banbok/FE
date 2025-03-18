@@ -25,7 +25,7 @@ export const CodeUrlInput: React.FC<SectionProps> = ({
   return (
     <section
       id={id}
-      className={`h-screen w-full flex justify-center items-center bg-gray-300 transition-opacity duration-500 ${
+      className={`h-screen w-full flex justify-center items-center bg-white transition-opacity duration-500 ${
         isActive ? "opacity-100" : "opacity-50"
       }`}
       onClick={onClick}
