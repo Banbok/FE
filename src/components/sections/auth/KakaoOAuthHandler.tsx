@@ -33,8 +33,17 @@ export default function KakaoOAuthHandler() {
           }
         );
 
+        // if (!response.ok) {
+        //   throw new Error("로그인 처리 중 오류가 발생했습니다.");
+        // }
+
+        // 응답 상태와 에러 메시지를 더 자세히 로깅
         if (!response.ok) {
-          throw new Error("로그인 처리 중 오류가 발생했습니다.");
+          const errorText = await response.text(); // 에러 내용 확인
+          console.error("서버 응답:", response.status, errorText);
+          throw new Error(
+            `로그인 처리 중 오류가 발생했습니다. 상태 코드: ${response.status}`
+          );
         }
 
         const data = await response.json();
