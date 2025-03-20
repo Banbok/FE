@@ -1,5 +1,9 @@
-import React from "react";
+import KakaoLogin from "../../components/sections/auth/KakoLogin";
 
 export default function Login() {
-  return <div>Login</div>;
+  return (
+    <div>
+      <KakaoLogin />
+    </div>
+  );
 }
