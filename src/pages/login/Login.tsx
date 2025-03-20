@@ -6,7 +6,6 @@ export default function Login() {
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-800">반복</h1>
-          <p className="text-gray-600 mt-2">계정에 로그인하세요</p>
         </div>
 
         <div className="space-y-4">
