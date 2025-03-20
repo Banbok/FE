@@ -11,7 +11,7 @@ export default function KakaoLogin() {
       className="mt-2 p-2 w-full flex items-center justify-center gap-2 border-2 border-yellow-300 rounded-lg hover:bg-yellow-300 transition-colors"
       aria-label="카카오 로그인"
     >
-      <span>카카오로 로그인하기</span>
+      <span>카카오 로그인</span>
     </button>
   );
 }
