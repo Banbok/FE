@@ -16,7 +16,6 @@ export default function KakaoOAuthHandler() {
       try {
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get("code");
-        console.log("추출된 코드:", code);
 
         if (!code) {
           throw new Error("인증 코드를 찾을 수 없습니다.");
@@ -33,13 +32,8 @@ export default function KakaoOAuthHandler() {
           }
         );
 
-        // if (!response.ok) {
-        //   throw new Error("로그인 처리 중 오류가 발생했습니다.");
-        // }
-
-        // 응답 상태와 에러 메시지를 더 자세히 로깅
         if (!response.ok) {
-          const errorText = await response.text(); // 에러 내용 확인
+          const errorText = await response.text();
           console.error("서버 응답:", response.status, errorText);
           throw new Error(
             `로그인 처리 중 오류가 발생했습니다. 상태 코드: ${response.status}`
@@ -56,11 +50,10 @@ export default function KakaoOAuthHandler() {
           setUser(data.userInfo);
         }
 
-        navigate("/"); // 메인 페이지로 이동
+        navigate("/");
       } catch (err) {
         console.error("OAuth 처리 오류:", err);
 
-        // 타입 검사를 추가하여 err.message 안전하게 접근
         if (err instanceof Error) {
           setError(err.message);
         } else {
