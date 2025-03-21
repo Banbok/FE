@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SectionProps } from "../../interfaces/sectionprops";
 
 export const CodeUrlInput: React.FC<SectionProps> = ({
@@ -8,6 +8,25 @@ export const CodeUrlInput: React.FC<SectionProps> = ({
 }) => {
   const [codeurl, setCodeurl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const checkLoginStatus = () => {
+      const token = localStorage.getItem("accessToken");
+      setIsLoggedIn(!!token);
+    };
+
+    checkLoginStatus();
+    const handleStorageChange = () => {
+      checkLoginStatus();
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   const handleSubmit = async () => {
     if (!codeurl.trim()) return;
@@ -15,7 +34,6 @@ export const CodeUrlInput: React.FC<SectionProps> = ({
     try {
       setIsLoading(true);
 
-      // 로컬 스토리지에서 토큰 가져오기 (토큰 인증 방식을 사용하는 경우)
       const token = localStorage.getItem("accessToken");
 
       const response = await fetch(
@@ -27,7 +45,6 @@ export const CodeUrlInput: React.FC<SectionProps> = ({
             ...(token && { Authorization: `Bearer ${token}` }),
           },
           body: JSON.stringify({ link: codeurl }),
-          // CORS 문제 해결을 위한 설정
           mode: "cors",
         }
       );
@@ -65,7 +82,11 @@ export const CodeUrlInput: React.FC<SectionProps> = ({
     >
       <input
         type="text"
-        placeholder="해결한 코테 링크를 작성해주세요..."
+        placeholder={
+          isLoggedIn
+            ? "해결한 코테 링크를 작성해주세요..."
+            : "로그인 후 사용해주세요"
+        }
         value={codeurl}
         onChange={(e) => setCodeurl(e.target.value)}
         onKeyDown={handleKeyPress}
@@ -74,10 +95,14 @@ export const CodeUrlInput: React.FC<SectionProps> = ({
       />
       <button
         onClick={handleSubmit}
-        className={`px-2 py-2 border border-blue-500 rounded-r-2xl bg-blue-500 text-white transition-all ${
-          isLoading ? "opacity-70 cursor-not-allowed" : "hover:bg-blue-600"
+        className={`px-2 py-2 border rounded-r-2xl transition-all ${
+          isLoggedIn
+            ? isLoading
+              ? "opacity-70 cursor-not-allowed border-blue-500 bg-blue-500 text-white"
+              : "hover:bg-blue-600 border-blue-500 bg-blue-500 text-white"
+            : "bg-gray-300 border-gray-300 text-gray-500 cursor-not-allowed"
         }`}
-        disabled={isLoading}
+        disabled={isLoading || !isLoggedIn}
       >
         {isLoading ? "전송 중..." : "전송"}
       </button>
