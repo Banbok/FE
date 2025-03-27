@@ -1,5 +1,3 @@
-"use client";
-
 import LoginStatusButton from "./LoginStatusButton";
 
 const Header = () => {
