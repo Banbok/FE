@@ -20,17 +20,19 @@ const Home = () => {
   };
 
   return (
-    <div className="w-full">
-      <Title
-        isActive={activeSection === 0}
-        onClick={scrollToNextSection}
-        id="title-section"
-      />
-      <CodeUrlInput
-        isActive={activeSection === 1}
-        onClick={scrollToNextSection}
-        id="input-section"
-      />
+    <div className="w-full overflow-x-auto sm:overflow-x-auto md:overflow-x-hidden">
+      <div className="min-w-max">
+        <Title
+          isActive={activeSection === 0}
+          onClick={scrollToNextSection}
+          id="title-section"
+        />
+        <CodeUrlInput
+          isActive={activeSection === 1}
+          onClick={scrollToNextSection}
+          id="input-section"
+        />
+      </div>
     </div>
   );
 };
