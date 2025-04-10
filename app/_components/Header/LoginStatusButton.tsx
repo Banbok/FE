@@ -1,26 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import useUserStore from "../../_zustand/userStore";
+import { useAuthStore } from "../../_store/authStore";
 import LoginButton from "../Button/LoginButton";
 import LogoutButton from "../Button/LogoutButton";
+import { useState, useEffect } from "react";
 
 const LoginStatusButton = () => {
-  const { isLoggedIn, initializeFromStorage } = useUserStore();
-  const [isInitialized, setIsInitialized] = useState(false);
+  const user = useAuthStore((state) => state.user);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
-    initializeFromStorage();
-    setIsInitialized(true);
-  }, [initializeFromStorage]);
+    setIsHydrated(true);
+  }, []);
 
-  if (!isInitialized) {
-    return null;
-  }
+  if (!isHydrated) return null; // 아직 hydration 안 됐으면 아무것도 안 보여줌
+
+  const isAuthenticated = !!user;
 
   return (
     <nav className="flex items-center gap-4">
-      {isLoggedIn ? <LogoutButton /> : <LoginButton />}
+      {isAuthenticated ? <LogoutButton /> : <LoginButton />}
     </nav>
   );
 };

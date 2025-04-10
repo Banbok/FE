@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import VoiceNavigation from "./_components/VoiceNavigation";
+import AuthInitializer from "./_components/AuthInitializer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({
       >
         {children}
         <VoiceNavigation />
+        <AuthInitializer />
       </body>
     </html>
   );

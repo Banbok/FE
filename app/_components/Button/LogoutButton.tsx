@@ -1,13 +1,25 @@
 "use client";
 
-import useUserStore from "../../_zustand/userStore";
+import { useCallback, useEffect } from "react";
+import { useAuthStore } from "../../_store/authStore";
+import { useVoiceCommandStore } from "../../_store/voiceCommands";
 
 const LogoutButton = () => {
-  const logout = useUserStore((state) => state.logout);
+  const logout = useAuthStore((state) => state.logout);
+  const setCommandHandler = useVoiceCommandStore(
+    (state) => state.setCommandHandler
+  );
 
-  const handleLogout = () => {
-    logout();
-  };
+  const handleLogout = useCallback(async () => {
+    await logout();
+  }, [logout]);
+
+  useEffect(() => {
+    setCommandHandler("logout", handleLogout);
+    return () => {
+      setCommandHandler("logout", () => {});
+    };
+  }, [setCommandHandler, handleLogout]);
 
   return (
     <button onClick={handleLogout} className="logout-button cursor-pointer">
