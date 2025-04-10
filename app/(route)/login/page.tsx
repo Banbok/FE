@@ -2,10 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import {
-  KakaoLogin,
   GoogleLogin,
   NaverLogin,
-} from "../../_components/sections/auth/OauthLogin";
+} from "../../_components/Button/OauthLoginButton";
 
 export default function Login() {
   const router = useRouter();
@@ -27,9 +26,6 @@ export default function Login() {
         </div>
 
         <div className="space-y-4">
-          <div className="flex items-center justify-center">
-            <KakaoLogin />
-          </div>
           <div className="flex items-center justify-center">
             <NaverLogin />
           </div>
