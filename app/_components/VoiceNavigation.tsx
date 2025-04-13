@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useVoiceCommandStore } from "../_store/voiceCommands";
 
 interface SpeechRecognitionEvent {
   results: SpeechRecognitionResultList;
@@ -28,6 +29,7 @@ const VoiceNavigation = () => {
   const [isListening, setIsListening] = useState(false);
   const [isEnabled, setIsEnabled] = useState(false);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const executeCommand = useVoiceCommandStore((state) => state.executeCommand);
 
   useEffect(() => {
     const SpeechRecognition =
@@ -76,12 +78,15 @@ const VoiceNavigation = () => {
         router.push("/login");
       } else if (transcript.includes("마이페이지")) {
         router.push("/profile");
+      } else if (transcript.includes("로그아웃")) {
+        executeCommand("logout");
+      } else if (transcript.includes("코드 전송")) {
+        executeCommand("submitCode");
       }
     };
 
     recognitionRef.current = recognition;
 
-    // isEnabled가 true일 때만 인식 시작
     if (isEnabled) {
       recognition.start();
     }
@@ -89,7 +94,7 @@ const VoiceNavigation = () => {
     return () => {
       recognition.stop();
     };
-  }, [router, isEnabled]);
+  }, [router, isEnabled, executeCommand]);
 
   const toggleVoiceRecognition = () => {
     if (isEnabled) {
