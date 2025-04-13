@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import VoiceNavigation from "./_components/VoiceNavigation";
 import AuthInitializer from "./_components/AuthInitializer";
+import PomodoroWrapper from "./_components/Timer/PomodoroWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,6 +36,7 @@ export default function RootLayout({
         {children}
         <VoiceNavigation />
         <AuthInitializer />
+        <PomodoroWrapper />
       </body>
     </html>
   );
