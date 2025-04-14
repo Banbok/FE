@@ -19,7 +19,7 @@ export default function Login() {
         <div className="text-center mb-8">
           <h1
             onClick={handleTitleClick}
-            className="text-3xl font-bold text-gray-800"
+            className="text-3xl font-bold text-gray-800 cursor-pointer"
           >
             반복
           </h1>
