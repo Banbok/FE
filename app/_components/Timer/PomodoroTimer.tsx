@@ -66,7 +66,7 @@ const PomodoroTimer = () => {
       </div>
 
       <div className="grid grid-cols-1 gap-2 mb-4">
-        {[20, 40, 60, 120].map((min) => (
+        {[20, 35, 50, 60].map((min) => (
           <button
             key={min}
             onClick={() => addTime(min)}
