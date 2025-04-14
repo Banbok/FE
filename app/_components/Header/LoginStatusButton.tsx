@@ -17,11 +17,7 @@ const LoginStatusButton = () => {
 
   const isAuthenticated = !!user;
 
-  return (
-    <nav className="flex items-center gap-4">
-      {isAuthenticated ? <LogoutButton /> : <LoginButton />}
-    </nav>
-  );
+  return <nav>{isAuthenticated ? <LogoutButton /> : <LoginButton />}</nav>;
 };
 
 export default LoginStatusButton;
