@@ -27,12 +27,10 @@ export const useAuthStore = create<AuthState>()(
             const data = JSON.parse(text);
             set({ user: data.result });
           } else {
-            // 예상된 상황: 로그인 안됨
             set({ user: null });
             console.warn("로그인된 사용자가 아닙니다. user는 null로 설정됨.");
           }
         } catch (error) {
-          // 네트워크 오류 등 예상치 못한 경우만 콘솔 출력
           console.error("유저 정보 불러오기 실패:", error);
           set({ user: null });
         } finally {
@@ -53,8 +51,8 @@ export const useAuthStore = create<AuthState>()(
       },
     }),
     {
-      name: "auth-storage", // localStorage key 이름
-      partialize: (state) => ({ user: state.user }), // 저장할 항목만 선택
+      name: "auth-storage",
+      partialize: (state) => ({ user: state.user }),
     }
   )
 );
