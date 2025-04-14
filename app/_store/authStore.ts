@@ -28,7 +28,6 @@ export const useAuthStore = create<AuthState>()(
             set({ user: data.result });
           } else {
             set({ user: null });
-            console.warn("로그인된 사용자가 아닙니다. user는 null로 설정됨.");
           }
         } catch (error) {
           console.error("유저 정보 불러오기 실패:", error);
