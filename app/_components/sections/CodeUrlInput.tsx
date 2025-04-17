@@ -22,6 +22,23 @@ export const CodeUrlInput: React.FC<SectionProps> = ({
     try {
       setIsLoading(true);
 
+      // 1. 먼저 Next API Route (/api/scrape)로 요청
+      const scrapeRes = await fetch("/api/scrape", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ link: codeurl }),
+      });
+
+      const scraped = await scrapeRes.json();
+      if (!scrapeRes.ok) {
+        throw new Error(scraped.message || "크롤링 실패");
+      }
+
+      const { title, link, site } = scraped;
+
+      console.log("크롤링 결과:", title, site, link);
+
+      // 2. 서버로 전송
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/v1/problems`,
         {
@@ -30,13 +47,22 @@ export const CodeUrlInput: React.FC<SectionProps> = ({
             "Content-Type": "application/json",
           },
           credentials: "include",
-          body: JSON.stringify({ link: codeurl }),
+          // body: JSON.stringify({ link: codeurl }),
+          body: JSON.stringify({
+            title,
+            link,
+            site,
+          }),
           mode: "cors",
         }
       );
 
+      console.log("크롤링 결과:", title, site, link);
+
       if (response.ok) {
-        alert("URL 저장 완료: " + codeurl);
+        // alert("URL 저장 완료: " + codeurl);
+        console.log("✅ 문제 정보 서버 전송 성공 (status 200)");
+        alert("문제 정보 저장 완료! " + codeurl + ", " + title + ", " + site);
         setCodeurl("");
       } else {
         const errorData = await response.json();
