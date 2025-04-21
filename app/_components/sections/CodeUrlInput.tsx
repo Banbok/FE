@@ -87,37 +87,45 @@ export const CodeUrlInput: React.FC<SectionProps> = ({
   return (
     <section
       id={id}
-      className={`h-screen w-full flex justify-center items-center bg-white transition-opacity duration-500 ${
+      className={`min-h-screen w-full flex justify-center items-center bg-white transition-opacity duration-500 px-4 ${
         isActive ? "opacity-100" : "opacity-50"
       }`}
       onClick={onClick}
     >
-      <input
-        type="text"
-        placeholder={
-          isAuthenticated
-            ? "해결한 코테 링크를 작성해주세요..."
-            : "로그인 후 사용해주세요"
-        }
-        value={codeurl}
-        onChange={(e) => setCodeurl(e.target.value)}
-        onKeyDown={handleKeyPress}
-        className="w-64 p-2 border-t border-l border-b border-black rounded-l-2xl focus:outline-none"
-        disabled={isLoading}
-      />
-      <button
-        onClick={handleSubmit}
-        className={`px-2 py-2 border rounded-r-2xl transition-all ${
-          isAuthenticated
-            ? isLoading
-              ? "opacity-70 cursor-not-allowed border-blue-500 bg-blue-500 text-white"
-              : "hover:bg-blue-600 border-blue-500 bg-blue-500 text-white"
-            : "bg-gray-300 border-gray-300 text-gray-500 cursor-not-allowed"
-        }`}
-        disabled={isLoading || !isAuthenticated}
-      >
-        {isLoading ? "전송 중..." : "전송"}
-      </button>
+      <div className="w-full max-w-sm sm:flex">
+        <input
+          type="text"
+          placeholder={
+            isAuthenticated
+              ? "해결한 코테 링크를 작성해주세요..."
+              : "로그인 후 사용해주세요"
+          }
+          value={codeurl}
+          onChange={(e) => setCodeurl(e.target.value)}
+          onKeyDown={handleKeyPress}
+          className="w-full p-2 border border-black 
+               sm:border-r-0 
+               rounded-2xl sm:rounded-tl-2xl sm:rounded-tr-none 
+               sm:rounded-bl-2xl sm:rounded-br-none 
+               focus:outline-none 
+               text-sm sm:text-base"
+          disabled={isLoading}
+        />
+
+        <button
+          onClick={handleSubmit}
+          className={`w-full sm:w-auto whitespace-nowrap mt-2 sm:mt-0 px-4 py-2 border rounded-2xl sm:rounded-r-2xl sm:rounded-l-none transition-all ${
+            isAuthenticated
+              ? isLoading
+                ? "opacity-70 cursor-not-allowed border-blue-500 bg-blue-500 text-white"
+                : "hover:bg-blue-600 border-blue-500 bg-blue-500 text-white"
+              : "bg-gray-300 border-gray-300 text-gray-500 cursor-not-allowed"
+          }`}
+          disabled={isLoading || !isAuthenticated}
+        >
+          {isLoading ? "전송 중..." : "전송"}
+        </button>
+      </div>
     </section>
   );
 };

@@ -7,7 +7,6 @@ import { useScrollPosition } from "../../_hooks/useScrollPosition";
 const Home = () => {
   const activeSection = useScrollPosition();
 
-  // 🔽 클릭 시 다음 섹션으로 이동하는 함수
   const scrollToNextSection = () => {
     const sections = [
       document.getElementById("title-section"),
@@ -20,20 +19,24 @@ const Home = () => {
   };
 
   return (
-    <div className="w-full overflow-x-auto sm:overflow-x-auto md:overflow-x-hidden">
-      <div className="min-w-max">
-        <Title
-          isActive={activeSection === 0}
-          onClick={scrollToNextSection}
-          id="title-section"
-        />
-        <CodeUrlInput
-          isActive={activeSection === 1}
-          onClick={scrollToNextSection}
-          id="input-section"
-        />
+    <main className="w-full">
+      {/* 모바일에서는 스크롤 가능하도록 수정 */}
+      <div className="min-h-screen overflow-x-hidden">
+        {/* 모바일에서는 수직으로 쌓이도록 변경 */}
+        <div className="flex flex-col md:min-w-max">
+          <Title
+            isActive={activeSection === 0}
+            onClick={scrollToNextSection}
+            id="title-section"
+          />
+          <CodeUrlInput
+            isActive={activeSection === 1}
+            onClick={scrollToNextSection}
+            id="input-section"
+          />
+        </div>
       </div>
-    </div>
+    </main>
   );
 };
 
