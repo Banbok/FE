@@ -62,28 +62,28 @@ const PomodoroTimer = () => {
   return (
     <>
       <div className="sm:hidden">
-        <div className="fixed top-1/4 left-2 p-4 rounded-lg shadow-md bg-white w-42 -translate-y-1/2">
-          <div className="text-center text-2xl font-bold mb-2">
+        <div className="fixed top-1/4 left-2 p-2 rounded-lg shadow-md bg-white w-32">
+          <div className="text-center text-xl font-bold mb-2">
             {formatTime(timeLeft)}
           </div>
 
-          <div className="grid grid-cols-2 gap-2 mb-2">
+          <div className="grid grid-cols-2 gap-1 mb-1 ">
             {[20, 35, 50, 60].map((min) => (
               <button
                 key={min}
                 onClick={() => addTime(min)}
-                className="bg-blue-100 hover:bg-blue-200 text-blue-800 font-medium py-1 rounded"
+                className="bg-blue-100 text-xs hover:bg-blue-200 text-blue-800 font-medium py-0.5 rounded"
               >
                 {min}분
               </button>
             ))}
           </div>
 
-          <div className="flex justify-center gap-2">
+          <div className="flex justify-center gap-1">
             <button
               onClick={toggleTimerBtn}
               disabled={timeLeft === 0}
-              className={`px-2 py-1 rounded text-white whitespace-nowrap ${
+              className={`px-1 py-0.5 rounded text-xs text-white whitespace-nowrap ${
                 isRunning
                   ? "bg-yellow-500 hover:bg-yellow-600"
                   : "bg-blue-500 hover:bg-blue-600"
@@ -93,7 +93,7 @@ const PomodoroTimer = () => {
             </button>
             <button
               onClick={resetTimer}
-              className="px-3 py-1 bg-gray-500 hover:bg-gray-600 text-white rounded"
+              className="px-1 py-0.5 bg-gray-500 hover:bg-gray-600 text-xs text-white rounded"
             >
               리셋
             </button>
