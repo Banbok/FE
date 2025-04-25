@@ -3,26 +3,13 @@
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+
 import { useVoiceCommandStore } from "../_store/voiceCommands";
-
-interface SpeechRecognitionEvent {
-  results: SpeechRecognitionResultList;
-}
-
-interface SpeechRecognitionConstructor {
-  new (): SpeechRecognition;
-}
-
-interface SpeechRecognition {
-  lang: string;
-  continuous: boolean;
-  interimResults: boolean;
-  start(): void;
-  stop(): void;
-  onstart: () => void;
-  onend: () => void;
-  onresult: (event: SpeechRecognitionEvent) => void;
-}
+import {
+  SpeechRecognitionEvent,
+  SpeechRecognitionConstructor,
+  SpeechRecognition,
+} from "../_type/speechRecognition.type";
 
 const VoiceNavigation = () => {
   const router = useRouter();
