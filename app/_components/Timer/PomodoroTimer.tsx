@@ -61,7 +61,7 @@ const PomodoroTimer = () => {
 
   return (
     <>
-      <div className="sm:hidden">
+      <div className="sm:hidden mobile-timer">
         <div className="fixed top-1/4 left-2 p-2 rounded-lg shadow-md bg-white w-32">
           <div className="text-center text-xl font-bold mb-2">
             {formatTime(timeLeft)}
@@ -102,7 +102,7 @@ const PomodoroTimer = () => {
       </div>
 
       {/*  */}
-      <div className="hidden sm:block">
+      <div className="hidden sm:block desktop-timer">
         <div className="fixed top-1/3 left-2 p-4 rounded-lg shadow-md bg-white w-42 -translate-y-1/2">
           <div className="text-center text-3xl font-bold mb-4">
             {formatTime(timeLeft)}
