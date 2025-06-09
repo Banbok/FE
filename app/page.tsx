@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 
 import Home from "./_components/sections/Home";
-import VoiceNavigation from "./_components/VoiceNavigation";
 
 export const metadata: Metadata = {
   title: "Banbok",
@@ -29,7 +28,6 @@ export default function main() {
   return (
     <main>
       <Home />
-      <VoiceNavigation />
     </main>
   );
 }
