@@ -4,12 +4,12 @@ import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
-import { useVoiceCommandStore } from "../_store/voiceCommands";
+import { useVoiceCommandStore } from "../../_store/voiceCommands";
 import {
   SpeechRecognitionEvent,
   SpeechRecognitionConstructor,
   SpeechRecognition,
-} from "../_type/speechRecognition.type";
+} from "../../_type/speechRecognition.type";
 
 const VoiceNavigation = () => {
   const router = useRouter();

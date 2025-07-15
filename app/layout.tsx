@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import VoiceNavigation from "./_components/VoiceNavigation";
+import VoiceNavigationWrapper from "./_components/Voice/VoiceNavigationWrapper";
 import AuthInitializer from "./_components/AuthInitializer";
 import PomodoroWrapper from "./_components/Timer/PomodoroWrapper";
 
@@ -34,7 +34,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-        <VoiceNavigation />
+        <VoiceNavigationWrapper />
         <AuthInitializer />
         <PomodoroWrapper />
       </body>
