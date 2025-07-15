@@ -6,9 +6,11 @@ import Image from "next/image";
 
 export default function VoiceButton() {
   const [show, setShow] = useState(false);
+  const [autoStart, setAutoStart] = useState(false);
 
   const handleClick = () => {
     setShow(true);
+    setAutoStart(true);
   };
 
   const LazyVoiceNavigation = dynamic(() => import("./VoiceNavigation"), {
@@ -33,7 +35,7 @@ export default function VoiceButton() {
           />
         </button>
       )}
-      {show && <LazyVoiceNavigation />}
+      {show && <LazyVoiceNavigation autoStart={autoStart} />}
     </>
   );
 }

@@ -11,7 +11,7 @@ import {
   SpeechRecognition,
 } from "../../_type/speechRecognition.type";
 
-const VoiceNavigation = () => {
+const VoiceNavigation = ({ autoStart = false }) => {
   const router = useRouter();
   const [isListening, setIsListening] = useState(false);
   const [isEnabled, setIsEnabled] = useState(false);
@@ -98,6 +98,10 @@ const VoiceNavigation = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (autoStart) setIsEnabled(true);
+  }, [autoStart]);
 
   return (
     <div className="fixed bottom-4 right-4 flex flex-col items-end gap-2">
