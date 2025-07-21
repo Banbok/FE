@@ -16,3 +16,8 @@ export interface SpeechRecognition {
   onend: () => void;
   onresult: (event: SpeechRecognitionEvent) => void;
 }
+
+export interface VoiceState {
+  isVoiceEnabled: boolean;
+  setVoiceEnabled: (enabled: boolean) => void;
+}
