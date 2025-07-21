@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 import { useVoiceCommandStore } from "../../_store/voiceCommands";
+import { useVoiceStore } from "../../_store/voiceStore";
 import {
   SpeechRecognitionEvent,
   SpeechRecognitionConstructor,
@@ -17,6 +18,7 @@ const VoiceNavigation = ({ autoStart = false }) => {
   const [isEnabled, setIsEnabled] = useState(false);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
   const executeCommand = useVoiceCommandStore((state) => state.executeCommand);
+  const setVoiceEnabled = useVoiceStore((state) => state.setVoiceEnabled);
 
   useEffect(() => {
     const SpeechRecognition =
@@ -90,6 +92,7 @@ const VoiceNavigation = ({ autoStart = false }) => {
         recognitionRef.current.stop();
       }
       setIsEnabled(false);
+      setVoiceEnabled(false);
     } else {
       // 음성 인식 시작
       setIsEnabled(true);
